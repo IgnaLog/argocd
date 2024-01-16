@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: argocd-demo
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+stringData:
+  name: argocd-demo
+  url: https://github.com/IgnaLog/argocd-demo.git
+  password: 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

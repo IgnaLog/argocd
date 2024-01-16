@@ -1,0 +1,76 @@
+# ------------------------------------------------------------------------------
+# ARGOCD PROJECT CONFIGS
+# ------------------------------------------------------------------------------
+configs:
+
+  # NAMESPACES to be used
+  namespaces:
+    - second
+
+projects:
+  - name: third
+    namespace: argocd
+    additionalLabels: {}
+    additionalAnnotations: {}
+    finalizers:
+    - resources-finalizer.argocd.argoproj.io
+    description: Third Project
+    sourceRepos:
+      - '*'
+    destinations:
+      - namespace: 'third'
+        server: https://kubernetes.default.svc
+    clusterResourceWhitelist:
+      - group: '*'
+        kind: '*'
+
+# ------------------------------------------------------------------------------
+# APPLICATIONS
+# ------------------------------------------------------------------------------
+applications:
+# ------------------------------------------------------------------------------
+  - name: nginx
+    namespace: argocd
+    additionalLabels: { }
+    additionalAnnotations:
+    finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    project: third
+    source:
+      chart: nginx
+      repoURL: https://charts.bitnami.com/bitnami
+      targetRevision: 15.4.4
+      helm:
+        releaseName: nginx
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: third
+    syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
+    info:
+      - name: url
+        value: https://github.com/TheAutomationRules/argocd.git
+
+  - name: redis
+    namespace: argocd
+    additionalLabels: { }
+    additionalAnnotations:
+    finalizers:
+      - resources-finalizer.argocd.argoproj.io
+    project: third
+    source:
+      chart: redis
+      repoURL: https://charts.bitnami.com/bitnami
+      targetRevision: 18.5.0
+      helm:
+        releaseName: redis
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: third
+    syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
+    info:
+      - name: url
+        value: https://github.com/TheAutomationRules/argocd.git
