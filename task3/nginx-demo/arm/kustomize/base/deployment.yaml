@@ -15,7 +15,7 @@ spec:
         app: nginx-demo-arm
     spec:
       containers:
-        - image: ignalog/nginx-demo-arm
+        - image: docker.io/ignalog/nginx-demo-arm:0.1.0
           name: nginx-demo-arm
           ports:
             - containerPort: 80
