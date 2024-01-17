@@ -1,10 +1,10 @@
-start: minikubestart installargo project createns gitsecret forward
+start: installargo project createns gitsecret forward
 installiu: installimageupdater installapp sleep forward-app
 
 #----------------------------------------------------------------------------
 
-minikubestart:
-	minikube start
+# minikubestart:
+# 	minikube start
 
 installargo:
 	@echo "| > INSTALACION DE ARGOCD"
