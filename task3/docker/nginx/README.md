@@ -52,6 +52,10 @@ Ahora vamos a generar una nueva version 0.1.1 y siguientes versiones
         docker push ghcr.io/ignalog/nginx-demo-arm:$VERSION
 ```
 
+    VERSION=0.1.1 && \
+    docker build --build-arg FROM_IMG="nginx" --build-arg FROM_VER="1.22.1" --build-arg VERSION="$VERSION" -t ignalog/nginx-demo-arm:$VERSION docker/nginx && \
+    docker push ignalog/nginx-demo-arm:$VERSION
+
     VERSION=0.0.1 && \
     docker build --build-arg FROM_IMG="nginx" --build-arg FROM_VER="1.22.1" --build-arg VERSION="$VERSION" -t ghcr.io/ignalog/nginx-demo-arm:$VERSION docker/nginx && \
     docker tag ghcr.io/ignalog/nginx-demo-arm:$VERSION ghcr.io/ignalog/nginx-demo-arm:latest && \

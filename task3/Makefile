@@ -42,4 +42,4 @@ sleep:
 
 forward-app:
 	@echo "| > FORWARD DE PUERTO DE ACCESO A APP"
-	kubectl port-forward service/nginx-demo-arm -n argocd-demo 9092:80
+	kubectl port-forward service/nginx-demo-arm -n argocd 9092:80
