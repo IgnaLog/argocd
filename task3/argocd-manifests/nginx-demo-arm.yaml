@@ -6,7 +6,8 @@ metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
-    argocd-image-updater.argoproj.io/image-list: docker.io/ignalog/nginx-demo-arm:~0.1
+    argocd-image-updater.argoproj.io/image-list: ghcr.io/ignalog/nginx-demo-arm:~0.1
+    # argocd-image-updater.argoproj.io/git-branch: main
 
 spec:
   project: argocd-demo
